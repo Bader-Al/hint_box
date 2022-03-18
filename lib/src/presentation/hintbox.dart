@@ -78,7 +78,7 @@ class HintboxWidget extends StatelessWidget {
               width: borderWidth,
             ),
           ),
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             minWidth: 250,
             maxWidth: 350,
           ),
@@ -91,14 +91,17 @@ class HintboxWidget extends StatelessWidget {
                 child: HintboxText(
                   message: message,
                   textColor: textColor,
+                  renderLearnMore: onTap != null,
                 )),
             Positioned.fill(
                 child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
                     alignment: Alignment.center,
                     child: HintboxText(
                       message: message,
                       textColor: textColor,
+                      renderLearnMore: onTap != null,
                     ))),
             Positioned(
                 top: -19,
@@ -145,7 +148,12 @@ class HintboxIcon extends StatelessWidget {
 class HintboxText extends StatelessWidget {
   final String message;
   final Color textColor;
-  const HintboxText({Key? key, required this.message, required this.textColor})
+  final bool renderLearnMore;
+  const HintboxText(
+      {Key? key,
+      required this.message,
+      required this.textColor,
+      this.renderLearnMore = false})
       : super(key: key);
 
   @override
@@ -160,20 +168,30 @@ class HintboxText extends StatelessWidget {
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          message,
-          style: _msgStyle,
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 6),
-        Text(
-          "learn more",
-          style: _msgStyle.copyWith(
-              fontSize: 10, fontStyle: FontStyle.italic, color: Colors.white),
-          textAlign: TextAlign.center,
-        )
-      ],
+      children: renderLearnMore
+          ? [
+              Text(
+                message,
+                style: _msgStyle,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                "learn more",
+                style: _msgStyle.copyWith(
+                    fontSize: 10,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white),
+                textAlign: TextAlign.center,
+              )
+            ]
+          : [
+              Text(
+                message,
+                style: _msgStyle,
+                textAlign: TextAlign.center,
+              )
+            ],
     );
   }
 }
