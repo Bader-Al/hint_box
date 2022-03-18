@@ -2,7 +2,7 @@ part of hint_box;
 
 class HintboxProvider extends StatelessWidget {
   final Widget child;
-  final String initialText;
+  final String? initialText;
   const HintboxProvider(
       {Key? key, required this.child, required this.initialText})
       : super(key: key);

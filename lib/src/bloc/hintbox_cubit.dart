@@ -1,7 +1,7 @@
 part of hint_box;
 
 class HintboxCubit extends Cubit<HintboxState> {
-  HintboxCubit({required String initialMessage})
+  HintboxCubit({required String? initialMessage})
       : super(HintboxMessage(message: initialMessage));
 
   newHintState(HintboxState newState) => emit(newState);
