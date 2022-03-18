@@ -4,7 +4,17 @@ final _shakeKey = GlobalKey<ShakeWidgetState>();
 
 class HintBox extends StatelessWidget {
   final Function()? onTap;
-  const HintBox({Key? key, this.onTap}) : super(key: key);
+  const HintBox({
+    Key? key,
+    this.onTap,
+    this.backgroundColor = const Color(0xff212121),
+    this.bulbColor = const Color(0xffFBC53C),
+    this.borderColor = const Color(0xff121212),
+  }) : super(key: key);
+
+  final Color backgroundColor;
+  final Color borderColor;
+  final Color bulbColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +40,9 @@ class HintBox extends StatelessWidget {
               textColor: isError ? Colors.red : Colors.white,
               isError: isError,
               onTap: onTap,
+              backgroundColor: backgroundColor,
+              bulbColor: bulbColor,
+              borderColor: borderColor,
             );
           },
         ),
@@ -38,6 +51,10 @@ class HintBox extends StatelessWidget {
       return HintboxWidget(
         message: "HintboxCubit not provided :(",
         onTap: onTap,
+        isError: true,
+        backgroundColor: backgroundColor,
+        bulbColor: bulbColor,
+        borderColor: borderColor,
       );
     }
   }
