@@ -10,11 +10,13 @@ class HintBox extends StatelessWidget {
     this.backgroundColor = const Color(0xff212121),
     this.bulbColor = const Color(0xffFBC53C),
     this.borderColor = const Color(0xff121212),
+    this.textColor = Colors.white,
   }) : super(key: key);
 
   final Color backgroundColor;
   final Color borderColor;
   final Color bulbColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class HintBox extends StatelessWidget {
             }
             return HintboxWidget(
               message: state.message!,
-              textColor: isError ? Colors.red : Colors.white,
+              textColor: isError ? Colors.red : textColor,
               isError: isError,
               onTap: onTap,
               backgroundColor: backgroundColor,
