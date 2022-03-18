@@ -1,7 +1,7 @@
 part of hint_box;
 
 class SineCurve extends Curve {
-  SineCurve({this.count = 3});
+  const SineCurve({this.count = 3});
   final double count;
 
   // 2. override transformInternal() method

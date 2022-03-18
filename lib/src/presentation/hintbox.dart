@@ -2,21 +2,6 @@ part of hint_box;
 
 final _shakeKey = GlobalKey<ShakeWidgetState>();
 
-class HintboxProvider extends StatelessWidget {
-  final Widget child;
-  final String initialText;
-  const HintboxProvider(
-      {Key? key, required this.child, required this.initialText})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<HintboxCubit>(
-      create: (context) => HintboxCubit(initialMessage: initialText),
-      child: child,
-    );
-  }
-}
-
 class HintBox extends StatelessWidget {
   final Function()? onTap;
   const HintBox({Key? key, this.onTap}) : super(key: key);
@@ -37,8 +22,11 @@ class HintBox extends StatelessWidget {
               _shakeKey.currentState?.shake();
               isError = true;
             }
+            if (state.message == null) {
+              return const SizedBox(); //! don't render
+            }
             return HintboxWidget(
-              message: state.message ?? 'ok',
+              message: state.message!,
               textColor: isError ? Colors.red : Colors.white,
               isError: isError,
               onTap: onTap,
